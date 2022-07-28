@@ -1,0 +1,225 @@
+from tkinter import Button
+from tokenize import Name
+import pygame_menu
+from pygame_menu.examples import create_example_window
+from ast import Add
+from audioop import add
+from turtle import Screen, textinput
+import pygame
+from traitlets import default
+pygame.init()
+
+# Шрифты Кириллица:
+font = pygame.font.SysFont('microsofttaile', 32)
+font_pont = pygame.font.SysFont('КОИ-7', 32)
+
+# Размеры дисплея:
+surface = create_example_window('CyberPunk', (1366, 786))
+WINDOW_SIZE = (1366, 786)
+
+# Цвета:
+
+WHITE = (255,255,255)
+GREEN = (0,255,0)
+RED = (255,0,0)
+BLUE = (0,0,255)
+BLACK = (0,0,0)
+FUCHSIA = (255, 0, 255)
+GRAY = (128, 128, 128)
+LIME = (0, 128, 0)
+MAROON = (128, 0, 0)
+NAVYBLUE = (0, 0, 128)
+OLIVE = (128, 128, 0)
+PURPLE = (128, 0, 128)
+TEAL = (0,128,128)
+
+# Цвет меню:
+my_theme = pygame_menu.themes.THEME_DARK.copy()
+my_theme.title = False  # Hide the menu title
+
+# характеристики ярлыков:
+main_menu = pygame_menu.Menu(
+    width=1366,  # Use full-screen
+    theme=my_theme,
+    title='',
+    center_content=False,
+    height=786
+)
+
+play_menu = pygame_menu.Menu(
+        height=786,
+        theme=my_theme,
+        title='STR_Menu',
+        center_content=False,
+        width=1366
+    )
+
+play_But_1 = pygame_menu.Menu(
+        height=786,
+        theme=my_theme,
+        title='STR_1',
+        center_content=False,
+        width=1366
+    )
+
+play_But_4 = pygame_menu.Menu(
+        height=786,
+        theme=my_theme,
+        title='STR_2',
+        center_content=False,
+        width=1366
+    )
+
+play_But_5 = pygame_menu.Menu(
+        height=786,
+        theme=my_theme,
+        title='STR_3',
+        center_content=False,
+        width=1366
+    )
+
+#Menu:
+# Украшение из цифр сбоку в меню:
+Version = main_menu.add.label(
+    '1.1.ALPHA',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=27)
+Version.rotate(0)
+Version.translate(-610, 730)
+
+# название:
+Name = main_menu.add.label(
+    'CyberPunk',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=80)
+Name.rotate(0)
+Name.translate(-400, 0)
+
+# Украшение из цифр сбоку в меню:
+label = main_menu.add.label(
+    '1010101101010111101010000101',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+label.rotate(90)
+label.translate(665, 375)
+
+# Характеристики кнопок в меню:
+b1 = main_menu.add.text_input(
+    'Name :',
+    default='John',
+    selection_color='GREEN')
+b1.translate(550, 20)
+
+b2 = main_menu.add.button('Play',
+    play_menu,
+    align=pygame_menu.locals.ALIGN_LEFT,
+    float=True,
+    font_size=40,
+    selection_color='GREEN'
+)
+b2.translate(20, 200)
+
+b3 = main_menu.add.button(
+    'Settings',
+    align=pygame_menu.locals.ALIGN_LEFT,
+    float=True,
+    font_size=40,
+    selection_color='GREEN'
+)
+b3.translate(20, 300)
+
+b4 = main_menu.add.button(
+    'Exit',
+    pygame_menu.events.EXIT,
+    align=pygame_menu.locals.ALIGN_LEFT,
+    float=True,
+    font_size=40,
+    selection_color='GREEN'
+)
+b4.translate(20, 400)
+# конец Menu 
+
+
+### ПЕРВАЯ ГЛАВА ###
+# Характеристики для первой главы:
+# Текст для первой главы 
+b_1_1 = play_menu.add.label(
+    'Темная холодная ночь.....дождь ещё моросил, кофта у John полностю промокла, идя по',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_1.translate(-70, 10)
+b_1_2 = play_menu.add.label(
+    'темной пустой улице он решил зайти в свой любимый бар, он вспомнил что он там уже давно не был,',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_2.translate(-35, 40)
+b_1_3 = play_menu.add.label(
+    'в придачу к этому он должен был отдать деньги Бармену.',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_3.translate(-310, 70)
+b_1_4 = play_menu.add.label(
+    'Подойдя к дверям бара он открыл их, и подойдя к бармену он был рад встретить его.',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_4.translate(-140, 100)
+b_1_5 = play_menu.add.label(
+    'Вы: Очень редкий случай встретить в наше время настоящего бармена а не робота',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_5.translate(-90, 130)
+b_1_6 = play_menu.add.label(
+    'Привет John, давно не заходил, напомни что ты будешь ?',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+b_1_6.translate(-250, 160)
+#конец текста для первой главы
+#первая кнопка для страницы STR_1
+Button_1_1 = play_menu.add.button(
+    '1.Мне виски (10 $)',
+    play_But_1,
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=27)
+Button_1_1.translate(-500, 220)
+
+#97
+#1
+c_1_1 = play_But_1.add.label(
+    'Бармен: отлично, кстати ты сможешь мне помочь ?',
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=25)
+c_1_1.translate(0, 0)
+
+# Первый вариант
+Button_2_1 = play_But_1.add.button(
+    'C чем ?',
+    play_But_4,
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=27)
+Button_2_1.translate(-430, 270)
+
+Button_2_2 = play_But_1.add.button(
+    'Нет, у меня нет времени',
+    play_But_5,
+    float=True,
+    font_name=pygame_menu.font.FONT_OPEN_SANS,
+    font_size=27)
+Button_2_2.translate(-445, 320)
+
+
+### КОНЕЦ ПЕВОЙ ГЛАВЫ ###
+
+if __name__ == '__main__':
+    main_menu.mainloop(surface)
